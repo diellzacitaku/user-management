@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { getUsers } from '../services/api';
+import UserCard from '../components/UserCard';
 
 export default function UsersPage() {
   const [users, setUsers] = useState([]);
@@ -28,11 +29,11 @@ export default function UsersPage() {
   const allUsers = useMemo(() => [...localUsers, ...users], [localUsers, users]);
 
   const filteredUsers = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return allUsers;
-    return allUsers.filter(u =>
-      (u.name || '').toLowerCase().includes(q) ||
-      (u.email || '').toLowerCase().includes(q)
+    const normalizedQuery = query.trim().toLowerCase();
+    if (!normalizedQuery) return allUsers;
+    return allUsers.filter(user =>
+      (user.name || '').toLowerCase().includes(normalizedQuery) ||
+      (user.email || '').toLowerCase().includes(normalizedQuery)
     );
   }, [allUsers, query]);
 
@@ -42,24 +43,12 @@ export default function UsersPage() {
   return (
     <div style={{ padding: 16 }}>
       <h1>Users</h1>
-
-      <input
-        type="search"
-        placeholder="Search by name or email…"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        style={{ padding: 8, width: 300, marginBottom: 12 }}
-        aria-label="Search users"
-      />
-
       {filteredUsers.length === 0 ? (
         <div>No users match your search</div>
       ) : (
-        <ul style={{ lineHeight: 1.6 }}>
-          {filteredUsers.map(u => (
-            <li key={u.id}>
-              <strong>{u.name}</strong> — {u.email} {u.company?.name ? `(${u.company.name})` : ''}
-            </li>
+        <ul className="user-list">
+          {filteredUsers.map(user => (
+            <UserCard key={user.id} user={user}/>
           ))}
         </ul>
       )}

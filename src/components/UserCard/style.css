@@ -1,0 +1,51 @@
+.user-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.user-list li + li {
+  margin-top: 10px;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 120ms, border-color 120ms;
+}
+.user-card:hover {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+.user-card:focus-visible {
+  outline: none;
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 3px rgba(147, 197, 253, 0.35);
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  border: 1px solid #e5e7eb;
+  background: #f8fafc;
+}
+.user-text {
+  display: grid;
+}
+.user-name {
+  font-weight: 600;
+  line-height: 1.2;
+}
+.user-meta {
+  font-size: 14px;
+  color: #6b7280;
+}

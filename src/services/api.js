@@ -1,5 +1,5 @@
 const BASE_URL = 'https://jsonplaceholder.typicode.com';
-const TIMEOUT_MS = 8000;
+const TIMEOUT_MS = 15000;
 
 function isValidUser(user) {
   return user && typeof user.id === 'number' && typeof user.name === 'string' && typeof user.email === 'string';
