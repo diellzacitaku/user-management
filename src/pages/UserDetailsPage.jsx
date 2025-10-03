@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { getUserById } from '../services/api';
+import './UserDetailsPage.css'
 
 export default function UserDetailsPage() {
   const { id } = useParams();
@@ -34,14 +35,18 @@ export default function UserDetailsPage() {
   if (!user)   return null;
 
   return (
-    <div style={{ padding: 16 }}>
-      <Link to="/" relative="path">Back to all users</Link>
+    <div className="container details-wrap">
+    <Link to="/" relative="path" className="back-link">← Back to all users</Link>
+    <article className="details-card">
       <h1>{user.name}</h1>
-      <p><strong>Email:</strong> {user.email}</p>
-      <p><strong>Phone:</strong> {user.phone}</p>
-      <p><strong>Company:</strong> {user.company?.name}</p>
-      <p><strong>Website:</strong> {user.website}</p>
-      <p><strong>Address:</strong> {user.address?.street}, {user.address?.city}</p>
-    </div>
+      <div className="details-list">
+        <div><strong>Email:</strong> {user.email}</div>
+        <div><strong>Phone:</strong> {user.phone}</div>
+        <div><strong>Company:</strong> {user.company?.name}</div>
+        <div><strong>Website:</strong> {user.website}</div>
+        <div><strong>Address:</strong> {user.address?.street}, {user.address?.city}</div>
+      </div>
+    </article>
+  </div>
   );
 }
