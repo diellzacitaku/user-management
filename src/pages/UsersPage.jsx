@@ -2,13 +2,25 @@ import { useEffect, useMemo, useState } from 'react';
 import { getUsers } from '../services/api';
 import UserCard from '../components/UserCard';
 import SearchBar from '../components/SearchBar';
+import AddUserForm from '../components/AddUserForm';
 
 export default function UsersPage() {
   const [users, setUsers] = useState([]);
-  const [localUsers] = useState([]);
+  const [localUsers, setLocalUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [query, setQuery] = useState('');
+
+  function handleAddUser(newUser){
+    const user = {
+      id: `local-${Date.now()}`,
+      name: newUser.name,
+      email: newUser.email,
+      company: {name: newUser.company || '-'  },
+      isLocal: true,
+    }
+    setLocalUsers(prev => [user, ...prev])
+  }
 
   useEffect(() => {
     let alive = true;
@@ -44,6 +56,7 @@ export default function UsersPage() {
   return (
     <div style={{ padding: 16 }}>
       <h1>Users</h1>
+      <AddUserForm onAdd={handleAddUser} disabled={loading} />
       <SearchBar
       value={query}
       onChange={setQuery}
