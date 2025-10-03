@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { getUsers } from '../services/api';
 import UserCard from '../components/UserCard';
+import SearchBar from '../components/SearchBar';
 
 export default function UsersPage() {
   const [users, setUsers] = useState([]);
@@ -43,6 +44,12 @@ export default function UsersPage() {
   return (
     <div style={{ padding: 16 }}>
       <h1>Users</h1>
+      <SearchBar
+      value={query}
+      onChange={setQuery}
+      onReset={() => setQuery('')}
+      disabled={loading}
+      />
       {filteredUsers.length === 0 ? (
         <div>No users match your search</div>
       ) : (
