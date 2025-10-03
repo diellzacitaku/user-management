@@ -1,0 +1,69 @@
+.add-user {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.add-user .input,
+.add-user .user-input {
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid #3b414b;
+  background: #2c3138;
+  color: #ffffff;
+  border-radius: 8px;
+}
+
+.add-user .input::placeholder,
+.add-user .user-input::placeholder {
+  color: #cbc7c7;
+  opacity: 1;
+}
+
+.add-user .input:hover,
+.add-user .user-input:hover {
+  border-color: #4a515c;
+  background: #31363d;
+}
+
+.add-user .user-input {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.add-user .add-button {
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid #4a515c;
+  background: #444b55;
+  color: #e8e6e6;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 34px;
+  flex: 0 0 auto;
+}
+
+.add-user .add-button:hover {
+  background: #363b43;
+  border-color: #5a6370;}
+
+.add-user .add-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .add-user {
+    flex-wrap: wrap;
+  }
+  .add-user .user-input,
+  .add-user .add-button {
+    flex: 1 1 100%;
+  }
+  .add-user .add-button {
+    width: 100%;
+  }
+}
